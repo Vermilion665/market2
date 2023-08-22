@@ -1,0 +1,9 @@
+{% block content %}
+    <h1>Autorization user</h1>
+    <p>Пожалуйста заполните форму vhoda:</p>
+    <form action="" method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Войти"></p>
+    </form>
+{% endblock %}
