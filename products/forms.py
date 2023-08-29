@@ -1,39 +1,34 @@
-# from django import forms
-# from django.forms import ModelForm
-# from .models import *
+from django import forms
+from .models import *
 # import datetime
 # from my_project.settings import DATE_INPUT_FORMATS
 
 
-# def year_choices():
-#     return [(r, r) for r in range(1950, datetime.date.today().year+1)]
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
+        labels = {
+            'name': 'Имя',
+            'description': 'Описание',
+            'slug': 'URL-адрес',
+        }
 
 
-# def current_year():
-#     return datetime.date.today().year
+class SubCategoryForm(forms.ModelForm):
+    class Meta:
+        model = SubCategory
+        fields = '__all__'
+        labels = {
+            'name': 'Подкатегория',
+            'category': 'Категория',
+        }
 
 
-
-# class CarForm(forms.ModelForm):
-#     class Meta:
-#         model = Car
-#         fields = '__all__'
-
-
-# class DriverForm(ModelForm):
-#     class Meta:
-#         model = Driver
-#         fields = '__all__'
-
- 
-
-# class ClientForm(ModelForm):
-#     class Meta:
-#         model = Client
-#         exclude = ['age']
-
-#     birthday = forms.DateField(input_formats=DATE_INPUT_FORMATS, label='Дата рождения',
-#                                widget=forms.DateInput(attrs={'type': 'date'}))
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Products
+        exclude = ['created_at', 'is_available']
 
 
 # class OrderForm(forms.ModelForm):

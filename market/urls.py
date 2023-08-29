@@ -25,7 +25,7 @@ from products.views import root_index
 urlpatterns = [
     path('', root_index, name='root_index'),
     path('admin/', admin.site.urls),
-    path('shop/', include(products_urls)),
+    path('products/', include(products_urls)),
     path('users/', include(users_urls)),
     path('orders/', include(orders_urls)),
     path('cart/', include(cart_urls)),

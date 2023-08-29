@@ -30,7 +30,7 @@ class SubCategory(models.Model):
         ordering = ['name',]
 
 
-class Product(models.Model):
+class Products(models.Model):
     name = models.CharField(max_length=128, verbose_name='Товар', unique=True)
     description = models.TextField(max_length=1000, verbose_name='Описание товара')
     price = models.FloatField(verbose_name='Цена товара')
