@@ -13,3 +13,7 @@
      </tr>
     {% endfor %}
 </table>
+{% for subcat in subcategories %}
+<p>{{subcat.name}}</p>
+<p>{{subcat.slug}}</p>
+{% endfor %}
