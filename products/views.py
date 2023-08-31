@@ -1,4 +1,5 @@
 from typing import Any, Dict
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import CreateView, ListView
@@ -8,9 +9,6 @@ from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
-    return HttpResponse('This is page PRODUCTS')
-
-def root_index(request):
     category = Category.objects.all()
     context = {
         'category_list': category
@@ -44,3 +42,28 @@ class SubCategoryCreateView(CreateView):
     form = SubCategoryForm
     template_name = 'products/subcategory-form.html'
     success_url = reverse_lazy('products:category-list')
+
+
+class ProductListView(ListView):
+    pass
+
+
+class ProductCreateView(CreateView):
+    model = Products
+    fields = '__all__'
+    form = ProductForm
+    template_name = 'products/product-form.html'
+    success_url = reverse_lazy('products:index')
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        context['subcategories'] = SubCategory.objects.all()
+        return context
+    
+    def form_valid(self, form) -> HttpResponse:
+        self.instance = form.save(commit=False)
+
+
+
+        return super().form_valid(form)

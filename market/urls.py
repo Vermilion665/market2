@@ -20,10 +20,10 @@ from products import urls as products_urls
 from users import urls as users_urls
 from cart import urls as cart_urls
 from orders import urls as orders_urls
-from products.views import root_index
+from products.views import index
 
 urlpatterns = [
-    path('', root_index, name='root_index'),
+    path('', index, name='root_index'),
     path('admin/', admin.site.urls),
     path('products/', include(products_urls)),
     path('users/', include(users_urls)),

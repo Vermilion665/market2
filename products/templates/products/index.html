@@ -7,18 +7,17 @@
 
 
 <ul class="nav nav-pills">
-  {% for cat in categories %}
+  {% for cat in category_list %}
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">{{cat.name}}</a>
     <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
+      
+      {% for subcat in cat.categories.all %}
+      <li><a class="dropdown-item" href="{{ subcat.get_absolute_url }}">{{ subcat.name }}</a></li>
+      {% endfor %}
+      
     </ul>
   </li>
-</ul>
-
 {% endfor %}
+</ul>
 {% endblock content %}

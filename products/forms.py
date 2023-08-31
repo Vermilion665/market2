@@ -28,7 +28,7 @@ class SubCategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Products
-        exclude = ['created_at', 'is_available']
+        exclude = ['created_at', 'is_available','subcategory']
 
 
 # class OrderForm(forms.ModelForm):
