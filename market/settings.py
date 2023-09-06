@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'orders',
     'products',
     'slugify',
-    'sorl.thumbnail'
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
