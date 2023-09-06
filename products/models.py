@@ -1,8 +1,15 @@
 from django.db import models
 from django.urls import reverse
 from slugify import slugify
+import os
 
 # Create your models here.
+
+def create_directory_path(instance, filename):
+    '''Функция возвращает путь к директории, где должны храниться изображения'''
+    filename = os.path.join('images/', instance.category.slug, instance.subcategory.slug)
+    return filename
+    #return f'images/{instance.category.slug}/{instance.subcategory.slug}'
 
 class Category(models.Model):
     name = models.CharField(max_length=50, verbose_name='Имя категории', unique=True)
@@ -44,19 +51,38 @@ class Products(models.Model):
     name = models.CharField(max_length=128, verbose_name='Товар', unique=True)
     description = models.TextField(max_length=1000, verbose_name='Описание товара')
     price = models.FloatField(verbose_name='Цена товара')
-    slug = models.SlugField(max_length=148, unique=True, verbose_name='URL-name')
+    slug = models.SlugField(max_length=148, unique=True, verbose_name='URL-name', editable=False)
     is_available = models.BooleanField(default=True, verbose_name='Доступность')
     created_at = models.DateField(auto_now_add=True, verbose_name='Дата добавление товара')
-    product_image = models.ImageField(upload_to='images/', verbose_name='Изображение товавра')
-    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, verbose_name='Подкатегория')
+    image = models.ImageField(upload_to=create_directory_path, verbose_name='Изображение товавра', null=True, blank=True)
+    subcategory = models.ForeignKey(SubCategory, on_delete=models.CASCADE, verbose_name='Подкатегория', editable=False, related_name='subcategory')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория', editable=False, related_name='category')
 
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['name', '-price']
 
+    def get_absolute_url(self):
+        '''Данная функция возвращает абсолютный URL для конкретного продукта.
+        Она использует функцию reverse() из модуля django.urls для получения URL-адреса продукта.
+        В аргументах функции reverse() передаются именованные параметры, которые используются для строительства URL-адреса.
+        В данном случае, используются значения slug связанных категории, подкатегории и самого продукта.'''
+        return reverse('products:product-detail', kwargs={
+            'cat_slug': self.category.slug,
+            'subcat_slug': self.slug,
+            'prod_slug': self.slug,
+            }
+        )    
+
     def __str__(self) -> str:
+        '''Функция возвращает атрибут "name" объекта, на котором она вызывается, в виде строки.
+        Функция slugify() обычно используется для преобразования строки в строку без пробелов и специальных символов,
+        которая может быть использована в URL'''
         return self.name
+
+    def save(self, *args, **kwargs):
+        '''Функция сохраняет данные объекта модели Products в базу данных. '''
+        self.slug = slugify(self.name)
+        super(Products, self).save(*args, **kwargs)
     
-    # def get_absolute_url(self):
-    #     return reverse('products:products-list', kwargs={'cat_slug':self.category.slug, 'subcat_slug': self.slug})

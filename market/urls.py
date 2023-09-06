@@ -21,6 +21,8 @@ from users import urls as users_urls
 from cart import urls as cart_urls
 from orders import urls as orders_urls
 from products.views import index
+from market import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', index, name='root_index'),
@@ -30,3 +32,6 @@ urlpatterns = [
     path('orders/', include(orders_urls)),
     path('cart/', include(cart_urls)),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

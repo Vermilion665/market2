@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import CreateView, ListView
 from .models import Category, SubCategory, Products
-from .forms import CategoryForm, SubCategoryForm, ProductForm
+from .forms import *
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -44,10 +44,6 @@ class SubCategoryCreateView(CreateView):
     success_url = reverse_lazy('products:category-list')
 
 
-class ProductListView(ListView):
-    pass
-
-
 class ProductCreateView(CreateView):
     model = Products
     fields = '__all__'
@@ -63,7 +59,20 @@ class ProductCreateView(CreateView):
     
     def form_valid(self, form) -> HttpResponse:
         self.instance = form.save(commit=False)
-
-
-
+        self.instance.category_id = self.request.POST.get('category')
+        self.instance.subcategory_id = self.request.POST.get('subcategory')
+        self.instance.save()
         return super().form_valid(form)
+
+
+class ProductListView(ListView):
+    model = Products
+    template_name = 'products/products-list.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        super().get_queryset()
+        slug = self.request.resolver_match.kwargs['subcat_slug']
+        queryset = Products.objects.filter(subcategory__slug = slug)
+        return queryset
+    
