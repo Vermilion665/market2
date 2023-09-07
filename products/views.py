@@ -2,7 +2,7 @@ from typing import Any, Dict
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 from .models import Category, SubCategory, Products
 from .forms import *
 from django.urls import reverse_lazy
@@ -75,4 +75,11 @@ class ProductListView(ListView):
         slug = self.request.resolver_match.kwargs['subcat_slug']
         queryset = Products.objects.filter(subcategory__slug = slug)
         return queryset
+    
+
+class ProductDetailView(DetailView):
+    model = Products
+    template_name = 'products/product-detail.html'
+    context_object_name = 'product'
+    slug_url_kwarg = 'prod_slug'
     

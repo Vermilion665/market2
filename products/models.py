@@ -63,14 +63,14 @@ class Products(models.Model):
         verbose_name_plural = 'Товары'
         ordering = ['name', '-price']
 
-    def get_absolut_url(self):
+    def get_absolute_url(self):
         '''Данная функция возвращает абсолютный URL для конкретного продукта.
         Она использует функцию reverse() из модуля django.urls для получения URL-адреса продукта.
         В аргументах функции reverse() передаются именованные параметры, которые используются для строительства URL-адреса.
         В данном случае, используются значения slug связанных категории, подкатегории и самого продукта.'''
         return reverse('products:product-detail', kwargs={
             'cat_slug': self.category.slug,
-            'subcat_slug': self.slug,
+            'subcat_slug': self.subcategory.slug,
             'prod_slug': self.slug,
             }
         )    
