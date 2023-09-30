@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 {% load thumbnail %}
- 
+
 <link rel="stylesheet" href="{% static 'css/products.css'%}" type="text/css">
- 
+
 <div class="products">
     {% for prod in products %}
       <div class="product">
@@ -15,11 +15,17 @@
         {% else %}
           <a href="{{ prod.get_absolute_url }}"><img src="/static/img/no_image.png"></a>
       {% endif %}
- 
+          
         <h2>{{ prod.name }}</h2>
-        <p>{{ prod.description }}</p>
+        <p>{{ prod.description|linebreaks }}</p> 
         <p>{{ prod.price }} руб.</p>
-      
+        <p>
+          <form action="{% url 'cart:cart-add' prod.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="В корзину"> 
+          </form>
+        </p>
       </div>
     {% endfor %}
     </div>

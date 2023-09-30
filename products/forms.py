@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from .models import Category, SubCategory, Products
 
 
 class CategoryForm(forms.ModelForm):
@@ -9,11 +9,12 @@ class CategoryForm(forms.ModelForm):
         labels = {
             'name': 'Имя',
             'description': 'Описание',
-            'slug': 'URL-адрес',
+            'slug': 'Url-адрес',
         }
 
 
 class SubCategoryForm(forms.ModelForm):
+    
     class Meta:
         model = SubCategory
         fields = '__all__'
@@ -24,6 +25,8 @@ class SubCategoryForm(forms.ModelForm):
 
 
 class ProductForm(forms.ModelForm):
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
+    subcategory = forms.ModelChoiceField(queryset=SubCategory.objects.all())
     class Meta:
         model = Products
-        exclude = ['created_at', 'is_available','subcategory']
+        exclude = ['created_at', 'is_available']

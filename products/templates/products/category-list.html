@@ -2,14 +2,18 @@
 {% block content %}
 <ul>
     {% for cat in categories %}
-        <li>{{cat.name}}</li>
+        <li> {{cat.name}} </li>
     <ul>
-        {% for subcat in cat.categories.all %}
-        <li>{{ subcat.name }}</li>
+        {% for subcategory in cat.categories.all %}
+            <li>{{subcategory.name}}</li>
+            
         {% endfor %}
     </ul>
     <br>
     {% endfor %}
+  
 </ul>
+
+
 
 {% endblock %}

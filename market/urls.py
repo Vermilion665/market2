@@ -16,22 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from products import urls as products_urls
-from users import urls as users_urls
-from cart import urls as cart_urls
-from orders import urls as orders_urls
-from products.views import index
-from market import settings
+from products import urls as urls_products
+from users import urls as urls_users
+from cart import urls as urls_cart
+from orders import urls as urls_orders
 from django.conf.urls.static import static
+from market import settings
+
 
 urlpatterns = [
-    path('', index, name='root_index'),
     path('admin/', admin.site.urls),
-    path('products/', include(products_urls)),
-    path('users/', include(users_urls)),
-    path('orders/', include(orders_urls)),
-    path('cart/', include(cart_urls)),
+    path('users/', include(urls_users)),
+    path('cart/', include(urls_cart)),
+    path('orders/', include(urls_orders)),
+	path('', include(urls_products)),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG: 
+	urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

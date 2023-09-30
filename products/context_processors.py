@@ -1,5 +1,6 @@
 from .models import Category
 
+
 def category(self):
     category = Category.objects.all()
     context = {

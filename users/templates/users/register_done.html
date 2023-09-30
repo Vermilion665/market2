@@ -1,9 +1,11 @@
-{% block title %}Успешная регистрация!{% endblock %}
+{% extends 'users/base.html' %}
+{% block title %}Успешная регистрация{% endblock %}
 
 {% block content %}
-    <h1>Account created:</h1>
-    <p>Login - {{new_user.username}}</p>
-    <p>Name - {{new_user.first_name}}</p>
-    <p>E-mail - {{new_user.email}}</p>
+    <h1>Аккаунт создан</h1>
+    <p>Логин - {{new_user.username}}</p>
+    <p>Имя - {{new_user.first_name}}</p>
+    <p>Эл. почта - {{new_user.email}}</p>
+    <p>Время регистрации - {{new_user.date_joined}}</p>
 
 {% endblock %}

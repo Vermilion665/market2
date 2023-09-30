@@ -1,9 +1,11 @@
+{% extends 'users/base.html' %}
 {% block content %}
-    <h1>Autorization user</h1>
-    <p>Пожалуйста заполните форму vhoda:</p>
+    <h1>Авторизация пользователя</h1>
+    <p>Пожалуйста, заполните форму входа:</p>
+    
     <form action="" method="post">
-        {{ form.as_p }}
         {% csrf_token %}
+        {{ form.as_p }}
         <p><input type="submit" value="Войти"></p>
     </form>
 {% endblock %}
