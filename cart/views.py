@@ -4,7 +4,6 @@ from products.models import Products
 from decimal import Decimal
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from products.models import Products
 from .forms import CartAddProductForm
 
 # Create your views here.
