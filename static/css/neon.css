@@ -1,0 +1,119 @@
+.container1 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 78px 0 0 0;
+    text-align: center;
+    border: solid 3px #fff;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 .1rem #fff,
+                0 0 .2rem #fff,
+                0 0 .3rem #f09,
+                0 0 .8rem #f09,
+                0 0 1rem #f09,
+                inset 0 0 1.3rem #f09;
+  }
+  
+  .container2 {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: solid 3px #fff;
+    border-radius: 0.8rem;
+    box-shadow: 0 0 .1rem #fff,
+                0 0 .2rem #fff,
+                0 0 .3rem #0fa,
+                0 0 .8rem #0fa,
+                0 0 1rem #0fa,
+                inset 0 0 1.3rem #0fa;
+  }
+  
+  .neonText1 {
+    color: #fff;
+      text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #f09,
+        0 0 82px #f09,
+        0 0 92px #f09,
+        0 0 102px #f09,
+        0 0 151px #f09;
+  }
+  
+  .neonText {
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #0fa,
+        0 0 82px #0fa,
+        0 0 92px #0fa,
+        0 0 102px #0fa,
+        0 0 151px #0fa;
+  }
+  
+  h1 {
+    font-size: 9.2rem;
+    margin: 0;
+    padding: 0 15px;
+  }
+  
+  h2 {
+    font-size: 4.2rem;
+    animation: flicker 1.5s infinite alternate;
+    margin: 0;
+    padding: 0 15px;
+  }
+  
+  /* Flickering animation */
+  @keyframes flicker {
+  
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa,
+        0 0 100px #0fa,
+        0 0 150px #0fa;
+  
+    }
+  
+    20%, 24%, 55% {
+        text-shadow: none;
+    }
+  }
+  
+  
+  /* Additional styling */
+  
+  h3 {
+   font-size: 1.8rem;
+  }
+  
+  .container {
+    margin-top: -1vh;
+    text-align: center;
+  }
+  
+  h1, h2, h3 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  
+  p {
+      text-align: center;
+      font-size: 40px;
+  }
+  
+  .sale {
+      text-align: center;
+      font-size: 30px;
+  }
