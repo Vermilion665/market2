@@ -189,11 +189,11 @@ header  img {
   position: absolute;
   height: 4px;
   top: auto;
-  right: 50%;
+  right: 0%;
   bottom: -5px;
-  left: 50%;
+  left: 1000%;
   background: #feb386;
-  transition: .8s;
+  transition: .3s;
 }
 
 .menu-main {
