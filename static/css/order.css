@@ -1,13 +1,36 @@
 table {
-    margin-left: 10%;
     width: 90%;
     table-layout: fixed;
 }
 
+table.order-info {
+    padding: 40px 0 0 20px;
+    color: green;
+}
+
+table a:visited {
+    color: #ae4adf;
+}
+
+table a:link {
+    color: cornflowerblue;
+}
+
 tbody tr:nth-child(odd) {
-    background-color: #f7e1f8;
+    background-color: #1e0d25;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #dadafa;
+    background-color: #1c2d2f;
+}
+
+.order_user_info {
+    height: 520px;
+    padding: 13px;
+    border-radius: 50px;
+    margin: 40px;
+    color: #EDE2D5;
+    backdrop-filter: blur(8px) saturate(100%) contrast(90%);
+    text-decoration: none;
+    box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 15px 5px;
 }

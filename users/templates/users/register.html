@@ -1,5 +1,6 @@
 {% extends 'users/base.html' %}
 {% block content %}
+<div class="user">
     <h1>Регистрация пользователя</h1>
     <p>Пожалуйста заполните форму регистрации:</p>
     <form action="." method="post">
@@ -7,4 +8,5 @@
         {% csrf_token %}
         <p><input type="submit" value="Зарегистрироваться"></p>
     </form>
+</div>
 {% endblock %}

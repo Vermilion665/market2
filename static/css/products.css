@@ -6,7 +6,7 @@
 }
 .product {
   width: 240px;
-  height: 370px;
+  max-height: 410px;
   padding: 13px;
   text-align: center;
   border-radius: 50px;

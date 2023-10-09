@@ -40,8 +40,19 @@
         {% endfor %}
 <style>
     :root, [data-bs-theme=light] {
-    --bs-body-bg: rgba(0, 0, 0, 0.88);
-}
+        --bs-body-bg: rgba(0, 0, 0, 0.88);
+        --bs-body-color: white;
+    }
+    .dropdown-menu.show {
+        background: darkslategrey;
+    }
+    .dropdown-item {
+        color: #bdff84;
+    }
+    .dropdown-menu {
+        --bs-dropdown-link-hover-color: #bdff84;
+	--bs-dropdown-link-hover-bg: #253444;
+    }
 </style>
         </ul>
 

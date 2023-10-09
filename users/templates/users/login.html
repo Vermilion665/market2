@@ -1,5 +1,6 @@
 {% extends 'users/base.html' %}
 {% block content %}
+<div class="user">
     <h1>Авторизация пользователя</h1>
     <p>Пожалуйста, заполните форму входа:</p>
     
@@ -8,4 +9,5 @@
         {{ form.as_p }}
         <p><input type="submit" value="Войти"></p>
     </form>
+</div>
 {% endblock %}
